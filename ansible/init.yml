@@ -1,0 +1,28 @@
+---
+- name: "add admin user + sudo group"
+  hosts: all
+  gather_facts: false
+  become: true
+  become_method: sudo
+  tasks:
+    - name: Create admin user
+      user:
+        name: "admin"
+        groups: sudo
+        append: yes
+        createhome: yes
+        shell: /bin/bash
+        state: present
+
+    - name: Add ssh pub keys
+      authorized_key:
+        user: "admin"
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+
+    - name: Ensure passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD:ALL'
+        validate: 'visudo -cf %s'
