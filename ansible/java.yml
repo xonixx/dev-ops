@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Install Java 11
+  become: true
+  become_method: sudo
+  tasks:
+    - name: Install OpenJDK 11
+      apt:
+        force_apt_get: yes
+        name: openjdk-11-jdk
+        update_cache: yes
+        

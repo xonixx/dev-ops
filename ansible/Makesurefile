@@ -8,3 +8,8 @@ ansible-playbook --ask-pass -l web -i inventory.yml -e 'ansible_user=root' init.
 @doc creates linux users
 
 ansible-playbook -l web -i inventory.yml users.yml
+
+@goal java
+@doc installs Java
+
+ansible-playbook -l web -i inventory.yml java.yml
