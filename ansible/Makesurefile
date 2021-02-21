@@ -13,3 +13,8 @@ ansible-playbook -l web -i inventory.yml users.yml
 @doc installs Java
 
 ansible-playbook -l web -i inventory.yml java.yml
+
+@goal mongodb
+@doc installs Mongodb
+
+ansible-playbook -l web -i inventory.yml mongodb.yml

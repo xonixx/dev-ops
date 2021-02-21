@@ -1,0 +1,29 @@
+# As per https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+---
+- hosts: all
+  name: Install Mongodb
+  become: true
+  become_method: sudo
+  tasks:
+    - name: Mongodb apt key
+      apt_key:
+        url: "https://www.mongodb.org/static/pgp/server-4.4.asc"
+        state: present
+
+    - name: Create a list file for MongoDB
+      copy: # Ubuntu 18.04 (Bionic)
+        content: "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse"
+        dest: "/etc/apt/sources.list.d/mongodb-org-4.4.list"
+
+    - name: Install Mongodb
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        name: "mongodb-org"
+
+    - name: "Start & enable mongod service"
+      systemd:
+        name: mongod
+        daemon_reload: yes
+        state: started
+        enabled: yes
