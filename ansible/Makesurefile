@@ -1,6 +1,10 @@
 
-
 @goal init
-@doc creates initials admin user
+@doc creates initial admin user
 
 ansible-playbook --ask-pass -l web -i inventory.yml -e 'ansible_user=root' init.yml
+
+@goal users
+@doc creates linux users
+
+ansible-playbook -l web -i inventory.yml users.yml

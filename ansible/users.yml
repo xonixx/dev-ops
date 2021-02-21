@@ -1,0 +1,24 @@
+---
+- name: "add sudo users"
+  hosts: all
+  gather_facts: false
+  become: true
+  become_method: sudo
+  vars_files:
+    - vars/ssh_keys.yml
+  tasks:
+    - name: Create sudo users
+      user:
+        name: "{{ item }}"
+        groups: sudo
+        append: yes
+        createhome: yes
+        shell: /bin/bash
+        state: present
+      with_items: "{{ users }}"
+
+    - name: Add ssh pub keys
+      authorized_key:
+        user: "{{ item.name }}"
+        key: "{{ item.key }}"
+      with_items: "{{ ssh_keys }}"
