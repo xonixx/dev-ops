@@ -1,5 +1,5 @@
 1. [x] Ansible init script to create `admin` user
-2. [ ] Ansible SSH users
+2. [x] Ansible SSH users
 3. [ ] Ansible install `java 11`
 4. [ ] Ansible install `mongo`
 5. [ ] Ansible install `postgres`

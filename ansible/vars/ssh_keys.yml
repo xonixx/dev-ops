@@ -2,7 +2,12 @@
 users:
   - xonix
 ssh_keys:
-  - name: "xonix" # fujistsu
-    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDd9ey1auypRp8b1Di4xar5Cn9eVRT45mN6jdBbFcbP+k17jVt8Ixn8Dny33reLDkvca4pMQcZskwEaTX2Fz2Ie+zppDPwPzAJI83lUu/PO395Ml2I9CA4Sj5PgTpOTJXIBz+RAoZpT9LLqFAMOC2rpoWvLTk/rp91H/VXN/khjXE5xyKEpd4yWnavGK7jmg4Emk3ZwJAKuCeIyWK4/2JdhC6R2dii5B0LkRc/sgpPkfW+41BUlyvPLvWwWv5UyCGOlq0P1aASn5A0SSt/uTBC+7+2b+6jEsht8E4UwlCAg0wavPEB1n2xCw6zNsbiGyJqamH9OIjJbDumiADDAz8Zr xonix@xonix"
-  - name: "xonix" # uroboros
-    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9MBZVfoMJokNmAZsbgHYvWyeTfwIKpqhdpBoprI2wXdkvj9WPucrQBuK5yXw4Z25LLVwfQ1sOnyALobRr1vPYGGHwvZuzUNQKwYVkcBUker+dvdb+eUL+fTyYGINfWWh3gfs0i1GkKHDXzbG4LSmIKXCMlvoro0xfavQ7TC6gwm5vaUh43y1H8qWBFaETXJ/6efTl8cFQiAm2YMwQU/rA0FRXVN6p3mdl/85eZQiS+rOjXFHhvPHz+A/8Hj1woXFEOVUMhCA56Y9aDv80tO6FvJvzM0059sLKu0XQqZiluSzVWbbAnXxc63Wypum1hNT6InOWvye4+HRJUu49m0Vl xonix@uroboros"
+  - name: "xonix"
+    key: &xonix_fujistsu "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDd9ey1auypRp8b1Di4xar5Cn9eVRT45mN6jdBbFcbP+k17jVt8Ixn8Dny33reLDkvca4pMQcZskwEaTX2Fz2Ie+zppDPwPzAJI83lUu/PO395Ml2I9CA4Sj5PgTpOTJXIBz+RAoZpT9LLqFAMOC2rpoWvLTk/rp91H/VXN/khjXE5xyKEpd4yWnavGK7jmg4Emk3ZwJAKuCeIyWK4/2JdhC6R2dii5B0LkRc/sgpPkfW+41BUlyvPLvWwWv5UyCGOlq0P1aASn5A0SSt/uTBC+7+2b+6jEsht8E4UwlCAg0wavPEB1n2xCw6zNsbiGyJqamH9OIjJbDumiADDAz8Zr xonix@xonix"
+  - name: "xonix"
+    key: &xonix_uroboros "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9MBZVfoMJokNmAZsbgHYvWyeTfwIKpqhdpBoprI2wXdkvj9WPucrQBuK5yXw4Z25LLVwfQ1sOnyALobRr1vPYGGHwvZuzUNQKwYVkcBUker+dvdb+eUL+fTyYGINfWWh3gfs0i1GkKHDXzbG4LSmIKXCMlvoro0xfavQ7TC6gwm5vaUh43y1H8qWBFaETXJ/6efTl8cFQiAm2YMwQU/rA0FRXVN6p3mdl/85eZQiS+rOjXFHhvPHz+A/8Hj1woXFEOVUMhCA56Y9aDv80tO6FvJvzM0059sLKu0XQqZiluSzVWbbAnXxc63Wypum1hNT6InOWvye4+HRJUu49m0Vl xonix@uroboros"
+  - name: "admin"
+    key: *xonix_fujistsu
+  - name: "admin"
+    key: *xonix_uroboros
+    
