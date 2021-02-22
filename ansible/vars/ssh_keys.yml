@@ -11,4 +11,5 @@ ssh_keys:
   - name: "admin"
     key: *xonix_uroboros
 app_users:
+  - video_reply_telegram_bot
   - video_reply_telegram_bot2
