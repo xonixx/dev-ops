@@ -9,6 +9,6 @@
 9.  [ ] Ansible install `elk`
 10. [ ] Ansible install `prometheus`/`grafana`
 11. [ ] Ansible adjust SSHD for tunneling
-12. [ ] Fix: sudo: unable to resolve host cmlteam3 
+12. [x] Fix: sudo: unable to resolve host cmlteam3 
 13. [ ] Linux firewall 
 14. [ ] Change hostname 

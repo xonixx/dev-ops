@@ -9,3 +9,10 @@
       copy:
         content: "{{ hostname }}\n"
         dest: "/etc/hostname"
+
+    - name: "ensure hostname is mapped in /etc/hosts"
+      lineinfile:
+        path: /etc/hosts
+        regexp: '# ansible hostname'
+        line: '127.0.0.1  {{ hostname }} # ansible hostname'
+        insertbefore: '^127\.0\.0\.1'
