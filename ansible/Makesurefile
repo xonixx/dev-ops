@@ -4,6 +4,11 @@
 
 ansible-playbook --ask-pass -l web -i inventory.yml -e 'ansible_user=root' init.yml
 
+@goal basic_config
+@doc basic Linux configuration (hostname)
+
+ansible-playbook -l web -i inventory.yml basic_config.yml
+
 @goal users
 @doc creates linux users
 

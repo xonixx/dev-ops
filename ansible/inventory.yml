@@ -4,3 +4,4 @@ web:
     209.182.238.117: # cmlteam3.cmlteam.com
       ansible_user: admin
       ansible_python_interpreter: /usr/bin/python3
+      hostname: cmlteam3 # TODO
