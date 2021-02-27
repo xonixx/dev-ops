@@ -16,3 +16,4 @@
 16. [ ] Ansible install `docker`
 17. [ ] Ansible install backup solution
 18. [ ] Ansible install `Redis`
+19. [ ] Ansible install `sonarqube`
