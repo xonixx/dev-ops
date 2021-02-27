@@ -12,3 +12,7 @@
 12. [x] Fix: sudo: unable to resolve host cmlteam3 
 13. [ ] Linux firewall 
 14. [ ] Change hostname 
+15. [ ] Ansible install `apache` / `nginx`
+16. [ ] Ansible install `docker`
+17. [ ] Ansible install backup solution
+18. [ ] Ansible install `Redis`
