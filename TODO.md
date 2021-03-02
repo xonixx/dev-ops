@@ -17,4 +17,4 @@
 17. [ ] Ansible install backup solution
 18. [ ] Ansible install `Redis`
 19. [ ] Ansible install `sonarqube`
-20. [ ] Ansible install `youtube-dl`
+20. [x] Ansible install `youtube-dl`
