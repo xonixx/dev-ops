@@ -28,3 +28,8 @@ ansible-playbook -l web -i inventory.yml java.yml
 @doc installs Mongodb
 
 ansible-playbook -l web -i inventory.yml mongodb.yml
+
+@goal youtube-dl
+@doc installs Youtube-DL
+
+ansible-playbook -l web -i inventory.yml youtube-dl.yml
