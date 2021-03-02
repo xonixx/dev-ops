@@ -11,6 +11,12 @@
     # Do we need to update youtube-dl if it is already installed?
     youtubedl_update: false
   tasks:
+    - name: Make python = python3
+      alternatives:
+        name: python
+        link: /usr/bin/python
+        path: /usr/bin/python3
+
     - name: Check if youtube-dl is already installed
       stat:
         path: "{{ youtubedl_executable_path }}"
