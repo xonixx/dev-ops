@@ -1,43 +1,39 @@
 
 @goal init
 @doc creates initial admin user
-
-ansible-playbook --ask-pass -l web -i inventory.yml -e 'ansible_user=root' init.yml
+  ansible-playbook --ask-pass -l web -i inventory.yml -e 'ansible_user=root' init.yml
 
 @goal basic_config
 @doc basic Linux configuration (hostname)
-
-ansible-playbook -l web -i inventory.yml basic_config.yml
+  ansible-playbook -l web -i inventory.yml basic_config.yml
 
 @goal users
 @doc creates linux users
-
-ansible-playbook -l web -i inventory.yml users.yml
+  ansible-playbook -l web -i inventory.yml users.yml
 
 @goal app_users
 @doc creates application users
-
-ansible-playbook -l web -i inventory.yml app_users.yml
+  ansible-playbook -l web -i inventory.yml app_users.yml
 
 @goal java
 @doc installs Java
-
-ansible-playbook -l web -i inventory.yml java.yml
+  ansible-playbook -l web -i inventory.yml java.yml
 
 @goal mongodb
 @doc installs Mongodb
+  ansible-playbook -l web -i inventory.yml mongodb.yml
 
-ansible-playbook -l web -i inventory.yml mongodb.yml
+@goal docker
+@doc installs Docker
+  ansible-playbook -l web -i inventory.yml docker.yml
 
 @goal youtube-dl
 @doc installs Youtube-DL
-
-ansible-playbook -l web -i inventory.yml youtube-dl.yml
+  ansible-playbook -l web -i inventory.yml youtube-dl.yml
 
 @goal utils
 @doc installs utils
-
-ansible-playbook -l web -i inventory.yml utils.yml
+  ansible-playbook -l web -i inventory.yml utils.yml
 
 @goal ssh
   ssh xonix@cmlteam3.cmlteam.com
