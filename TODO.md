@@ -18,3 +18,4 @@
 18. [ ] Ansible install `Redis`
 19. [ ] Ansible install `sonarqube`
 20. [x] Ansible install `youtube-dl`
+21. [ ] Ansible install apps (`jq`, `jsqry`)

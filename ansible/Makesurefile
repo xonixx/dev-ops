@@ -33,3 +33,6 @@ ansible-playbook -l web -i inventory.yml mongodb.yml
 @doc installs Youtube-DL
 
 ansible-playbook -l web -i inventory.yml youtube-dl.yml
+
+@goal ssh
+  ssh xonix@cmlteam3.cmlteam.com
