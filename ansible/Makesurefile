@@ -34,5 +34,13 @@ ansible-playbook -l web -i inventory.yml mongodb.yml
 
 ansible-playbook -l web -i inventory.yml youtube-dl.yml
 
+@goal utils
+@doc installs utils
+
+ansible-playbook -l web -i inventory.yml utils.yml
+
 @goal ssh
   ssh xonix@cmlteam3.cmlteam.com
+
+@goal default
+  ../makesure -l

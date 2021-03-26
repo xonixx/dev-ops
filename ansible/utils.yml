@@ -1,0 +1,16 @@
+---
+- hosts: all
+  name: Install useful utils
+  become: true
+  become_method: sudo
+  tasks:
+    - name: JQ
+      apt:
+        name: jq
+        update_cache: yes
+
+    - name: Jsqry
+      get_url:
+        url: "https://github.com/jsqry/jsqry-cli2/releases/download/v0.1.2/jsqry-linux-amd64"
+        dest: "/usr/local/bin/jsqry"
+        mode: 0755
