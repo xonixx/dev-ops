@@ -5,6 +5,8 @@
   gather_facts: false
   become: true
   become_method: sudo
+  vars_files:
+    - vars/ssh_keys.yml
   tasks:
     - name: Docker apt key
       shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -27,3 +29,19 @@
           - docker-ce
           - docker-ce-cli
           - containerd.io
+
+    # Ensure sudo-less docker as per: https://docs.docker.com/engine/install/linux-postinstall/
+    - name: Ensure group "docker" exists
+      group:
+        name: docker
+        state: present
+          
+    - name: Assign docker group to users
+      user:
+        name: "{{ item }}"
+        group: docker
+        append: yes
+      with_items: "{{ users }}"
+
+    
+
