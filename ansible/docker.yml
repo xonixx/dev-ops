@@ -1,29 +1,29 @@
-# As per https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+# As per https://docs.docker.com/engine/install/ubuntu/
 ---
 - hosts: all
-  name: Install Mongodb
+  name: Install Docker
+  gather_facts: false
   become: true
   become_method: sudo
   tasks:
-    - name: Mongodb apt key
-      apt_key:
-        url: "https://www.mongodb.org/static/pgp/server-4.4.asc"
-        state: present
+    - name: Docker apt key
+      shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      args:
+        creates: /usr/share/keyrings/docker-archive-keyring.gpg
+        warn: false # don't warn on curl
 
-    - name: Create a list file for MongoDB
+    - name: Create a list file for Docker
       copy: # Ubuntu 18.04 (Bionic)
-        content: "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse"
-        dest: "/etc/apt/sources.list.d/mongodb-org-4.4.list"
+        content: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu bionic stable"
+        dest: "/etc/apt/sources.list.d/docker.list"
 
-    - name: Install Mongodb
+    - name: Update apt cache
       apt:
         update_cache: yes
-        force_apt_get: yes
-        name: "mongodb-org"
 
-    - name: "Start & enable mongod service"
-      systemd:
-        name: mongod
-        daemon_reload: yes
-        state: started
-        enabled: yes
+    - name: Install Docker
+      apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io

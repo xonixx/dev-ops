@@ -1,6 +1,7 @@
 ---
 - hosts: all
   name: Install useful utils
+  gather_facts: false
   become: true
   become_method: sudo
   tasks:
