@@ -13,7 +13,7 @@
 13. [ ] Linux firewall 
 14. [ ] Change hostname 
 15. [ ] Ansible install `apache` / `nginx`
-16. [ ] Ansible install `docker`
+16. [x] Ansible install `docker`
 17. [ ] Ansible install backup solution
 18. [ ] Ansible install `Redis`
 19. [ ] Ansible install `sonarqube`
