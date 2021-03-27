@@ -5,10 +5,16 @@
   become: true
   become_method: sudo
   tasks:
-    - name: JQ
+    - name: Update apt cache
       apt:
-        name: jq
         update_cache: yes
+
+    - name: Install utils
+      apt:
+        pkg:
+          - jq
+          - ncdu
+          - pv
 
     - name: Jsqry
       get_url:
