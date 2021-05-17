@@ -13,3 +13,4 @@ ssh_keys:
 app_users:
   - video_reply_telegram_bot
   - video_reply_telegram_bot2
+  - bookmark_telegram_bot
