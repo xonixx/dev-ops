@@ -19,3 +19,6 @@
 19. [ ] Ansible install `sonarqube`
 20. [x] Ansible install `youtube-dl`
 21. [x] Ansible install apps (`jq`, `jsqry`)
+22. [ ] Upgrade Ubuntu 18 LTS -> 20 LTS
+23. [ ] Linux benchmark
+24. [ ] ClickHouse
