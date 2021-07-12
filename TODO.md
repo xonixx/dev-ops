@@ -2,23 +2,25 @@
 2.  [x] Ansible SSH users
 3.  [x] Ansible install `java 11`
 4.  [x] Ansible install `mongo`
-5.  [ ] Ansible install `postgres`
-6.  [ ] Ansible install `mysql`
+5.  [ ] **\[docker]** Ansible install `postgres`
+6.  [ ] **\[docker]** Ansible install `mysql`
 7.  [ ] Ansible install `haproxy`
 8.  [ ] Ansible install `letsencrypt`
-9.  [ ] Ansible install `elk`
-10. [ ] Ansible install `prometheus`/`grafana`
+9.  [ ] **\[docker]** Ansible install `elk`
+10. [ ] **\[docker]** Ansible install `prometheus`/`grafana`
 11. [ ] Ansible adjust SSHD for tunneling
 12. [x] Fix: sudo: unable to resolve host cmlteam3 
-13. [ ] Linux firewall 
+13. [ ] **\[research]** Linux firewall 
 14. [ ] Change hostname 
 15. [ ] Ansible install `apache` / `nginx`
 16. [x] Ansible install `docker`
-17. [ ] Ansible install backup solution
-18. [ ] Ansible install `Redis`
-19. [ ] Ansible install `sonarqube`
+17. [ ] **\[research]** Ansible install backup solution
+18. [ ] **\[docker]** Ansible install `Redis`
+19. [ ] **\[docker]** Ansible install `sonarqube`
 20. [x] Ansible install `youtube-dl`
 21. [x] Ansible install apps (`jq`, `jsqry`)
 22. [ ] Upgrade Ubuntu 18 LTS -> 20 LTS
-23. [ ] Linux benchmark
-24. [ ] ClickHouse
+23. [ ] **\[research]** Linux benchmark
+24. [ ] **\[docker]** ClickHouse
+25. [ ] Acquire domain
+26. [ ] **\[docker]** Move mongo to docker
