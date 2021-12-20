@@ -35,6 +35,14 @@
 @doc updates Youtube-DL
   ansible-playbook -l web -i inventory.yml youtube-dl.yml --extra-vars "youtubedl_update=true"
 
+@goal yt-dlp
+@doc installs Yt-dlp
+  ansible-playbook -l web -i inventory.yml youtube-dlp.yml
+
+@goal yt-dlp-update
+@doc updates Yt-dlp
+  ansible-playbook -l web -i inventory.yml youtube-dlp.yml --extra-vars "ytdlp_update=true"
+
 @goal utils
 @doc installs utils
   ansible-playbook -l web -i inventory.yml utils.yml

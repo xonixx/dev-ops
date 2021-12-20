@@ -1,15 +1,15 @@
 ---
 - hosts: all
-  name: Install youtube-dl
+  name: Install yt-dlp
   become: true
   become_method: sudo
   vars:
-    # The path where youtube-dl executable will be installed.
+    # The path where yt-dlp executable will be installed.
     # It is recommended to not change this path.
-    youtubedl_executable_path: "/usr/local/bin/youtube-dl"
+    ytdlp_executable_path: "/usr/local/bin/yt-dlp"
 
-    # Do we need to update youtube-dl if it is already installed?
-    youtubedl_update: false
+    # Do we need to update yt-dlp if it is already installed?
+    ytdlp_update: false
   tasks:
     - name: Make python = python3
       alternatives:
@@ -17,23 +17,23 @@
         link: /usr/bin/python
         path: /usr/bin/python3
 
-    - name: Check if youtube-dl is already installed
+    - name: Check if yt-dlp is already installed
       stat:
-        path: "{{ youtubedl_executable_path }}"
-      register: youtubedl_bin
+        path: "{{ ytdlp_executable_path }}"
+      register: ytdlp_bin
 
     - name: Download from source move to executables folder and set permissions
       get_url:
-        url: https://yt-dl.org/latest/youtube-dl
-        dest: "{{ youtubedl_executable_path }}"
+        url: https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
+        dest: "{{ ytdlp_executable_path }}"
         mode: 0755
         force: yes
-      when: not youtubedl_bin.stat.exists
+      when: not ytdlp_bin.stat.exists
 
-    - name: Update youtube-dl
-      command: youtube-dl -U
-      register: youtubedl_update_out
-      when: youtubedl_bin.stat.exists and youtubedl_update
-      changed_when: "'Updated youtube-dl.' in youtubedl_update_out.stdout"
-      failed_when: "'ERROR:' in youtubedl_update_out.stdout"
+    - name: Update yt-dlp
+      command: yt-dlp -U
+      register: ytdlp_update_out
+      when: ytdlp_bin.stat.exists and ytdlp_update
+      changed_when: "'Updated yt-dlp.' in ytdlp_update_out.stdout"
+      failed_when: "'ERROR:' in ytdlp_update_out.stdout"
       ignore_errors: true
