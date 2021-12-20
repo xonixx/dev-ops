@@ -9,9 +9,9 @@
 9.  [ ] **\[docker]** Ansible install `elk`
 10. [ ] **\[docker]** Ansible install `prometheus`/`grafana`
 11. [ ] Ansible adjust SSHD for tunneling
-12. [x] Fix: sudo: unable to resolve host cmlteam3 
-13. [ ] **\[research]** Linux firewall 
-14. [ ] Change hostname 
+12. [x] Fix: sudo: unable to resolve host cmlteam3
+13. [ ] **\[research]** Linux firewall
+14. [ ] Change hostname
 15. [ ] Ansible install `apache` / `nginx`
 16. [x] Ansible install `docker`
 17. [ ] **\[research]** Ansible install backup solution
@@ -24,3 +24,4 @@
 24. [ ] **\[docker]** ClickHouse
 25. [ ] Acquire domain
 26. [ ] **\[docker]** Move mongo to docker
+27. [ ] Java 17
