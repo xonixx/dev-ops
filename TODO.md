@@ -18,6 +18,7 @@
 18. [ ] **\[docker]** Ansible install `Redis`
 19. [ ] **\[docker]** Ansible install `sonarqube`
 20. [x] Ansible install `youtube-dl`
+    1. [ ] `yt-dlp`
 21. [x] Ansible install apps (`jq`, `jsqry`)
 22. [ ] Upgrade Ubuntu 18 LTS -> 20 LTS
 23. [ ] **\[research]** Linux benchmark

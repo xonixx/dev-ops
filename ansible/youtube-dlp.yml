@@ -1,0 +1,39 @@
+---
+- hosts: all
+  name: Install youtube-dl
+  become: true
+  become_method: sudo
+  vars:
+    # The path where youtube-dl executable will be installed.
+    # It is recommended to not change this path.
+    youtubedl_executable_path: "/usr/local/bin/youtube-dl"
+
+    # Do we need to update youtube-dl if it is already installed?
+    youtubedl_update: false
+  tasks:
+    - name: Make python = python3
+      alternatives:
+        name: python
+        link: /usr/bin/python
+        path: /usr/bin/python3
+
+    - name: Check if youtube-dl is already installed
+      stat:
+        path: "{{ youtubedl_executable_path }}"
+      register: youtubedl_bin
+
+    - name: Download from source move to executables folder and set permissions
+      get_url:
+        url: https://yt-dl.org/latest/youtube-dl
+        dest: "{{ youtubedl_executable_path }}"
+        mode: 0755
+        force: yes
+      when: not youtubedl_bin.stat.exists
+
+    - name: Update youtube-dl
+      command: youtube-dl -U
+      register: youtubedl_update_out
+      when: youtubedl_bin.stat.exists and youtubedl_update
+      changed_when: "'Updated youtube-dl.' in youtubedl_update_out.stdout"
+      failed_when: "'ERROR:' in youtubedl_update_out.stdout"
+      ignore_errors: true
