@@ -1,54 +1,74 @@
 
 @goal init
-@doc creates initial admin user
+@doc 'creates initial admin user'
   ansible-playbook --ask-pass -l web -i inventory.yml -e 'ansible_user=root' init.yml
 
 @goal basic_config
-@doc basic Linux configuration (hostname)
+@doc 'basic Linux configuration (hostname)'
   ansible-playbook -l web -i inventory.yml basic_config.yml
 
 @goal users
-@doc creates linux users
+@doc 'creates linux users'
   ansible-playbook -l web -i inventory.yml users.yml
 
 @goal app_users
-@doc creates application users
+@doc 'creates application users'
   ansible-playbook -l web -i inventory.yml app_users.yml
 
 @goal java
-@doc installs Java
+@doc 'installs Java'
   ansible-playbook -l web -i inventory.yml java.yml
 
 @goal mongodb
-@doc installs Mongodb
+@doc 'installs Mongodb'
   ansible-playbook -l web -i inventory.yml mongodb.yml
 
 @goal docker
-@doc installs Docker
+@doc 'installs Docker'
   ansible-playbook -l web -i inventory.yml docker.yml
 
 @goal youtube-dl
-@doc installs Youtube-DL
+@doc 'installs Youtube-DL'
   ansible-playbook -l web -i inventory.yml youtube-dl.yml
 
 @goal youtube-dl-update
-@doc updates Youtube-DL
+@doc 'updates Youtube-DL'
   ansible-playbook -l web -i inventory.yml youtube-dl.yml --extra-vars "youtubedl_update=true"
 
 @goal yt-dlp
-@doc installs Yt-dlp
+@doc 'installs Yt-dlp'
   ansible-playbook -l web -i inventory.yml youtube-dlp.yml
 
 @goal yt-dlp-update
-@doc updates Yt-dlp
+@doc 'updates Yt-dlp'
   ansible-playbook -l web -i inventory.yml youtube-dlp.yml --extra-vars "ytdlp_update=true"
 
 @goal utils
-@doc installs utils
+@doc 'installs utils'
   ansible-playbook -l web -i inventory.yml utils.yml
 
+@goal web-soft
+@doc 'installs web-soft'
+  ansible-playbook -l web -i inventory.yml web-soft.yml
+
 @goal ssh
+@doc 'connects to server via SSH'
   ssh xonix@maximullaris.com
 
+@goal all
+@doc 'prepares Ubuntu 18.04 server'
+#@depends_on init
+@depends_on basic_config
+@depends_on users
+@depends_on app_users
+@depends_on java
+@depends_on mongodb
+@depends_on docker
+@depends_on youtube-dl
+@depends_on yt-dlp
+@depends_on utils
+@depends_on web-soft
+
 @goal default
+@doc 'lists goals'
   ../makesure -l
