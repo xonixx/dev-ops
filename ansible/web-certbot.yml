@@ -20,9 +20,12 @@
         fi
       register: okToInstallCertbot
       ignore_errors: True
+    - debug: var=okToInstallCertbot
 
     - name: 'Install certbot'
       when: okToInstallCertbot is succeeded
       shell: |
         echo 'installing certbot...'
-        
+      register: res
+    - debug: var=res
+
