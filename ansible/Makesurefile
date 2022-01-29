@@ -73,7 +73,3 @@
 @depends_on yt-dlp
 @depends_on utils
 @depends_on web-soft
-
-@goal default
-@doc 'lists goals'
-  ../makesure -l
