@@ -48,7 +48,7 @@
   ansible-playbook -l web -i inventory.yml utils.yml
 
 @goal ssh
-  ssh xonix@cmlteam3.cmlteam.com
+  ssh xonix@maximullaris.com
 
 @goal default
   ../makesure -l
