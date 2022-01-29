@@ -19,7 +19,8 @@
       copy:
         src: "web/index.html"
         dest: "{{ document_root }}/"
-        mode: preserve
+#        mode: preserve
+        mode: '0755'
 
     - name: Apply Nginx template
       template:

@@ -49,12 +49,20 @@
 
 @goal web-soft
 @doc 'installs web-soft'
-@depends_on web-certbot
   ansible-playbook -l web -i inventory.yml web-soft.yml
 
 @goal web-certbot
 @doc 'installs certbot'
   ansible-playbook -l web -i inventory.yml web-certbot.yml
+
+@goal nginx-configure
+@doc 'configures nginx'
+  ansible-playbook -l web -i inventory.yml nginx-configure.yml
+
+@goal web
+@depends_on web-soft
+@depends_on web-certbot
+@depends_on nginx-configure
 
 @goal ssh
 @doc 'connects to server via SSH'
@@ -72,4 +80,4 @@
 @depends_on youtube-dl
 @depends_on yt-dlp
 @depends_on utils
-@depends_on web-soft
+@depends_on web
