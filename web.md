@@ -18,4 +18,5 @@
 
 - [Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
 - [Certbot](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04)
+- [Certbot Ubuntu 18](https://certbot.eff.org/instructions?ws=haproxy&os=ubuntubionic)
 

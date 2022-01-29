@@ -1,0 +1,28 @@
+---
+- hosts: all
+  name: Install certbot
+  gather_facts: false
+  become: true
+  become_method: sudo
+  tasks:
+#    - name: Update apt cache
+#      apt:
+#        update_cache: yes
+
+    - name: 'Check certbot is installed'
+      shell: |
+        if [ -x '/usr/bin/certbot' ]
+        then
+          echo "$(/usr/bin/certbot --version) is installed"
+          exit 1
+        else
+          echo 'certbot will be installed...'
+        fi
+      register: okToInstallCertbot
+      ignore_errors: True
+
+    - name: 'Install certbot'
+      when: okToInstallCertbot is succeeded
+      shell: |
+        echo 'installing certbot...'
+        
