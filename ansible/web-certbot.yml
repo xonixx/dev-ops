@@ -24,8 +24,16 @@
 
     - name: 'Install certbot'
       when: okToInstallCertbot is succeeded
+      # https://certbot.eff.org/instructions?ws=other&os=ubuntubionic
       shell: |
-        echo 'installing certbot...'
+        sudo snap install core; sudo snap refresh core
+        sudo snap install --classic certbot
+        sudo ln -s /snap/bin/certbot /usr/bin/certbot
+        echo
+        echo "$(/usr/bin/certbot --version) is installed"
       register: res
+      ignore_errors: True
+
     - debug: var=res
+      when: okToInstallCertbot is succeeded
 
