@@ -1,3 +1,4 @@
+@options timing
 
 @goal init
 @doc 'creates initial admin user'
@@ -47,9 +48,9 @@
 @doc 'installs utils'
   ansible-playbook -l web -i inventory.yml utils.yml
 
-@goal web-soft
-@doc 'installs web-soft'
-  ansible-playbook -l web -i inventory.yml web-soft.yml
+@goal web-servers
+@doc 'installs web servers'
+  ansible-playbook -l web -i inventory.yml web-servers.yml
 
 @goal web-certbot
 @doc 'installs certbot'
@@ -60,7 +61,7 @@
   ansible-playbook -l web -i inventory.yml nginx-configure.yml
 
 @goal web
-@depends_on web-soft
+@depends_on web-servers
 @depends_on web-certbot
 @depends_on nginx-configure
 

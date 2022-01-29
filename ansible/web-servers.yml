@@ -13,4 +13,6 @@
       apt:
         pkg:
           - haproxy
+          # if smth goes wrong: `sudo apt purge nginx-common nginx` first
+          # https://askubuntu.com/a/728786/222919
           - nginx
