@@ -1,13 +1,13 @@
 server {
-  listen 80;
+  listen 127.0.0.1:10001;
 
-  root {{ document_root }}/{{ app_root }};
-  index index.html index.htm;
+  root {{ document_root }}; # TODO via var
+  index index.html;
 
   server_name {{ server_name }};
 
   location / {
-   default_type "text/html";
+   #default_type "text/html";
    try_files $uri.html $uri $uri/ =404;
   }
 }
