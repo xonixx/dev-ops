@@ -46,16 +46,16 @@ frontend www-https
 	bind *:443 ssl crt /etc/haproxy/maximullaris.com.pem
 	mode http
 
-	acl is_ds_infra	            hdr_beg(host) -i hackathon.
+	acl is_www	            hdr_beg(host) -i www.
 
     reqadd X-Forwarded-Proto:\ https
 
 	# redirect to www
-	redirect prefix   https://www.cmlteam.com code 302      if { hdr_beg(host) -i cmlteam.com }
+	redirect prefix   https://www.maximullaris.com code 302      if { hdr_beg(host) -i maximullaris.com }
     # redirect to no-www
     #
 
-	use_backend ds_infra	            if is_ds_infra
+	use_backend www	            if is_www
 
 frontend www-http
 	bind *:80
@@ -73,13 +73,13 @@ frontend tcp-ssl
 	mode tcp
 	option tcplog
 	tcp-request inspect-delay 5s
-	acl is_logstash_json ssl_fc_sni elk.cmlteam.com # TODO use own domain for diff logstash inputs
+	acl is_logstash_json ssl_fc_sni elk.maximullaris.com # TODO use own domain for diff logstash inputs
 	use_backend logstash_json if is_logstash_json
 
-backend ds_infra
+backend www
     balance roundrobin
     mode http
-    server s1 localhost:8080 check
+    server s1 localhost:10001 check
 
 backend hack
     balance roundrobin
