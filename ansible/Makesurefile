@@ -64,6 +64,11 @@
 @depends_on web-servers
 @depends_on web-certbot
 @depends_on nginx-configure
+@depends_on certbot-setup-cron
+
+@goal certbot-setup-cron
+@doc 'sets up certbot to renew SSL cert regularly via cron'
+  ansible-playbook -l web -i inventory.yml certbot-setup-cron.yml
 
 @goal ssh
 @doc 'connects to server via SSH'
