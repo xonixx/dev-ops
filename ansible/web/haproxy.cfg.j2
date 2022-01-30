@@ -79,17 +79,17 @@ frontend tcp-ssl
 backend www
     balance roundrobin
     mode http
-    server s1 localhost:10001 check
+    server s1 127.0.0.1:10001 check
 
 backend hack
     balance roundrobin
     mode http
-    server s1 localhost:9088 check
+    server s1 127.0.0.1:9088 check
 
 backend logstash_json
     balance roundrobin
     mode tcp
-    server s1 localhost:4560 check
+    server s1 127.0.0.1:4560 check
 
 listen statistics
     bind 127.0.0.1:50200
