@@ -1,14 +1,13 @@
 ---
-
 - hosts: all
   name: Sets up certbot to renew SSL cert regularly via cron
   become: yes
   become_method: sudo
   gather_facts: no
   vars:
-    script_target: /opt/letsencrypt-cron
-    script_source: script
-    script_filename: letsencrypt_regenerate_local.sh
+    script_target: /opt/certbot-cron
+    script_source: web/certbot
+    script_filename: certbot_regenerate_local.sh
   tasks:
   - name: Ensure the script for cron to call is on server
     synchronize:
@@ -17,17 +16,17 @@
       checksum: yes
       archive: no
     with_fileglob: "{{script_source}}/*"      
-  - name: Refresh the letsencrypt cron job config
+  - name: Refresh the certbot cron job config
     cron:
-      name: "letsencrypt certs refresh"
-      minute: "0"
-      hour: "0"
-      day: "26"
+      name: "certbot certs refresh"
+      minute: "17"
+      hour: "3"
+      day: "27"
       month: "1,3,5,7,9,11"
 #      minute: "*/10"
 #      hour: "*"
 #      day: "*"
 #      month: "*"
-      job: "{{script_target}}/{{script_filename}} 2>&1 >> {{script_target}}/letsencrypt_regenerate_local.log"
+      job: "{{script_target}}/{{script_filename}} >> {{script_target}}/certbot_regenerate_local.log 2>&1"
       user: root
 

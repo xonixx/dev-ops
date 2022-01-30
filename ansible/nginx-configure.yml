@@ -7,7 +7,6 @@
   vars:
     server_name: 'maximullaris.com'
     document_root: '/var/www/maximullaris.com'
-#    app_root: html_demo_site-main
   tasks:
     - name: Create site folder if doesn't exist
       file:

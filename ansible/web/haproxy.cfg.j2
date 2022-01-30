@@ -43,7 +43,7 @@ defaults
     errorfile 504 /etc/haproxy/errors/504.http
 
 frontend www-https
-	bind *:443 ssl crt /etc/haproxy/a.cmlteam.com.pem
+	bind *:443 ssl crt /etc/haproxy/maximullaris.com.pem
 	mode http
 
 	acl is_ds_infra	            hdr_beg(host) -i hackathon.
@@ -69,7 +69,7 @@ frontend www-http
     use_backend hack                    if is_hack
 
 frontend tcp-ssl
-	bind *:10443 ssl crt /etc/haproxy/a.cmlteam.com.pem
+	bind *:10443 ssl crt /etc/haproxy/maximullaris.com.pem
 	mode tcp
 	option tcplog
 	tcp-request inspect-delay 5s

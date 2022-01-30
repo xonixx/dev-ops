@@ -53,26 +53,38 @@
   ansible-playbook -l web -i inventory.yml web-servers.yml
 
 @goal web-certbot
-@doc 'installs certbot'
+@doc 'installs Certbot'
   ansible-playbook -l web -i inventory.yml web-certbot.yml
 
 @goal nginx-configure
-@doc 'configures nginx'
+@doc 'configures Nginx'
   ansible-playbook -l web -i inventory.yml nginx-configure.yml
+
+@goal haproxy-configure
+@doc 'configures Haproxy'
+  ansible-playbook -l web -i inventory.yml haproxy-configure.yml
 
 @goal web
 @depends_on web-servers
 @depends_on web-certbot
 @depends_on nginx-configure
+@depends_on haproxy-configure
 @depends_on certbot-setup-cron
 
 @goal certbot-setup-cron
 @doc 'sets up certbot to renew SSL cert regularly via cron'
   ansible-playbook -l web -i inventory.yml certbot-setup-cron.yml
 
+@define SSH='ssh xonix@maximullaris.com'
+
+@goal certbot-regenerate
+@doc 'manually regenerates SSL cert with new domains'
+@depends_on certbot-setup-cron
+  $SSH "/opt/certbot-cron/certbot_regenerate_local.sh"
+
 @goal ssh
 @doc 'connects to server via SSH'
-  ssh xonix@maximullaris.com
+  $SSH
 
 @goal all
 @doc 'prepares Ubuntu 18.04 server'

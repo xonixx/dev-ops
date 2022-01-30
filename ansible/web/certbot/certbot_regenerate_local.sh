@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 
-SCRIPT_LOCATION=$(dirname "$0")
-HOSTS=$(printf %s "$(cat $SCRIPT_LOCATION/cml_cert_hosts.txt)" | tr '\n' ',')
+SCRIPT_LOCATION="$(dirname "$0")"
+HOSTS=$(printf '%s' "$(cat $SCRIPT_LOCATION/certbot_domains.txt)" | tr '\n' ',')
 #echo $HOSTS
 
 echo
 echo
 echo "--- [$(date)] renewing cert ---"
 
-sudo service apache2 stop
+sudo service nginx stop
 sudo service haproxy stop
-sudo letsencrypt certonly -t -n -vv --expand --force-renewal --standalone --domains $HOSTS
-FOLD=$(sudo ls -1 -t /etc/letsencrypt/live/ | head -n 1)
+
+sudo certbot --agree-tos --email 'xonixx@gmail.com' \
+  certonly -t --non-interactive -vv \
+    --expand --force-renewal --standalone \
+    --domains $HOSTS
+
+live='/etc/letsencrypt/live'
+FOLD=$(sudo ls -1 -t "$live/" | head -n 1)
 echo FOLD=$FOLD
-sudo bash -c "cat /etc/letsencrypt/live/$FOLD/fullchain.pem /etc/letsencrypt/live/$FOLD/privkey.pem > /etc/haproxy/a.cmlteam.com.pem"
-sudo service apache2 start
+sudo bash -c "cat $live/$FOLD/fullchain.pem $live/$FOLD/privkey.pem > /etc/haproxy/maximullaris.com.pem"
+
+sudo service nginx start
 sudo service haproxy start

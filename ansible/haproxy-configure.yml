@@ -1,0 +1,23 @@
+---
+- hosts: all
+  name: Configures Haproxy
+  gather_facts: false
+  become: true
+  become_method: sudo
+  vars:
+    server_name: 'maximullaris.com'
+  tasks:
+    - name: Apply Haproxy conf template
+      template:
+        src: web/haproxy.cfg.j2
+        dest: /etc/haproxy/haproxy.cfg
+      notify: Restart Haproxy
+
+    - name: Check Haproxy conf syntax
+      shell: 'haproxy -c -f /etc/haproxy/haproxy.cfg'
+
+  handlers:
+    - name: Restart Haproxy
+      service:
+        name: haproxy
+        state: restarted
