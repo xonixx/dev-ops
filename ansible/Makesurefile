@@ -1,85 +1,88 @@
 @options timing
 
+@define ANS_PLAY='ansible-playbook -l web -i inventory.yml'
+
 @goal init
 @doc 'creates initial admin user'
-  ansible-playbook --ask-pass -l web -i inventory.yml -e 'ansible_user=root' init.yml
+  $ANS_PLAY --ask-pass -e 'ansible_user=root' init.yml
 
 @goal basic_config
 @doc 'basic Linux configuration (hostname)'
-  ansible-playbook -l web -i inventory.yml basic_config.yml
+  $ANS_PLAY basic_config.yml
 
 @goal users
 @doc 'creates linux users'
-  ansible-playbook -l web -i inventory.yml users.yml
+  $ANS_PLAY users.yml
 
 @goal app_users
 @doc 'creates application users'
-  ansible-playbook -l web -i inventory.yml app_users.yml
+  $ANS_PLAY app_users.yml
 
-@goal java
+@goal install-java
 @doc 'installs Java'
-  ansible-playbook -l web -i inventory.yml java.yml
+  $ANS_PLAY install-java.yml
 
-@goal mongodb
+@goal install-mongodb
 @doc 'installs Mongodb'
-  ansible-playbook -l web -i inventory.yml mongodb.yml
+  $ANS_PLAY install-mongodb.yml
 
-@goal docker
+@goal install-docker
 @doc 'installs Docker'
-  ansible-playbook -l web -i inventory.yml docker.yml
+  $ANS_PLAY install-docker.yml
 
-@goal youtube-dl
+@goal install-youtube-dl
 @doc 'installs Youtube-DL'
-  ansible-playbook -l web -i inventory.yml youtube-dl.yml
+  $ANS_PLAY install-youtube-dl.yml
 
-@goal youtube-dl-update
+@goal update-youtube-dl
 @doc 'updates Youtube-DL'
-  ansible-playbook -l web -i inventory.yml youtube-dl.yml --extra-vars "youtubedl_update=true"
+  $ANS_PLAY install-youtube-dl.yml --extra-vars "youtubedl_update=true"
 
-@goal yt-dlp
+@goal install-yt-dlp
 @doc 'installs Yt-dlp'
-  ansible-playbook -l web -i inventory.yml youtube-dlp.yml
+  $ANS_PLAY install-youtube-dlp.yml
 
-@goal yt-dlp-update
+@goal update-yt-dlp
 @doc 'updates Yt-dlp'
-  ansible-playbook -l web -i inventory.yml youtube-dlp.yml --extra-vars "ytdlp_update=true"
+  $ANS_PLAY install-youtube-dlp.yml --extra-vars "ytdlp_update=true"
 
-@goal utils
+@goal install-utils
 @doc 'installs utils'
-  ansible-playbook -l web -i inventory.yml utils.yml
+  $ANS_PLAY install-utils.yml
 
-@goal web-servers
+@goal install-web-servers
 @doc 'installs web servers'
-  ansible-playbook -l web -i inventory.yml web-servers.yml
+  $ANS_PLAY install-web-servers.yml
 
-@goal web-certbot
+@goal install-certbot
 @doc 'installs Certbot'
-  ansible-playbook -l web -i inventory.yml web-certbot.yml
+  $ANS_PLAY install-certbot.yml
 
-@goal nginx-configure
+@goal configure-nginx
 @doc 'configures Nginx'
-  ansible-playbook -l web -i inventory.yml nginx-configure.yml
+  $ANS_PLAY configure-nginx.yml
 
-@goal haproxy-configure
+@goal configure-haproxy
 @doc 'configures Haproxy'
-  ansible-playbook -l web -i inventory.yml haproxy-configure.yml
+  $ANS_PLAY configure-haproxy.yml
 
 @goal web
-@depends_on web-servers
-@depends_on web-certbot
-@depends_on nginx-configure
-@depends_on haproxy-configure
-@depends_on certbot-setup-cron
+@doc 'installs and configures web components'
+@depends_on install-web-servers
+@depends_on install-certbot
+@depends_on configure-nginx
+@depends_on configure-haproxy
+@depends_on configure-certbot-cron
 
-@goal certbot-setup-cron
+@goal configure-certbot-cron
 @doc 'sets up certbot to renew SSL cert regularly via cron'
-  ansible-playbook -l web -i inventory.yml certbot-setup-cron.yml
+  $ANS_PLAY configure-certbot-cron.yml
 
 @define SSH='ssh xonix@maximullaris.com'
 
 @goal certbot-regenerate
 @doc 'manually regenerates SSL cert with new domains'
-@depends_on certbot-setup-cron
+@depends_on configure-certbot-cron
   $SSH "/opt/certbot-cron/certbot_regenerate_local.sh"
 
 @goal ssh
@@ -92,10 +95,15 @@
 @depends_on basic_config
 @depends_on users
 @depends_on app_users
-@depends_on java
-@depends_on mongodb
-@depends_on docker
-@depends_on youtube-dl
-@depends_on yt-dlp
-@depends_on utils
+@depends_on install-java
+@depends_on install-mongodb
+@depends_on install-docker
+@depends_on install-youtube-dl
+@depends_on install-yt-dlp
+@depends_on install-utils
 @depends_on web
+
+@goal update
+@doc 'updates soft'
+@depends_on update-youtube-dl
+@depends_on update-yt-dlp
