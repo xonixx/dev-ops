@@ -4,15 +4,15 @@
 4. [x] Ansible install `mongo`
 5. [ ] **\[docker]** Ansible install `postgres`
 6. [ ] **\[docker]** Ansible install `mysql`
-7. [ ] Ansible install `haproxy`
-8. [ ] Ansible install `letsencrypt`
+7. [x] Ansible install `haproxy`
+8. [x] Ansible install `letsencrypt`
 9. [ ] **\[docker]** Ansible install `elk`
 10. [ ] **\[docker]** Ansible install `prometheus`/`grafana`
 11. [ ] Ansible adjust SSHD for tunneling
-12. [x] Fix: sudo: unable to resolve host cmlteam3
+12. [x] Fix: sudo: unable to resolve host HOSTNAME
 13. [ ] **\[research]** Linux firewall
 14. [ ] Change hostname
-15. [ ] Ansible install `apache` / `nginx`
+15. [x] Ansible install `nginx`
 16. [x] Ansible install `docker`
 17. [ ] **\[research]** Ansible install backup solution
 18. [ ] **\[docker]** Ansible install `Redis`
